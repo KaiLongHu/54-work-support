@@ -40,27 +40,47 @@ reg   [1:0]         flow_cnt;               // 状态流转计数
 
 //向FIFO中写入数据
 always @(posedge clk or negedge rst_n) begin
+<<<<<<< HEAD
     if(!rst_n) begin  wrreq <= 1'b0;
+=======
+    if(!rst_n) begin
+        wrreq <= 1'b0;
+>>>>>>> ebad25106af0751a57c9154eb888799e6dce8a47
         data  <= 8'd0;
         flow_cnt <= 2'd0;
     end
     else begin
+<<<<<<< HEAD
 case(flow_cnt)
  2'd0: begin 
 if(wrempty) begin     //写空时，写请求拉高，跳到下一个状态
          wrreq <= 1'b1;
+=======
+        case(flow_cnt)
+            2'd0: begin 
+                if(wrempty) begin     //写空时，写请求拉高，跳到下一个状态
+                    wrreq <= 1'b1;
+>>>>>>> ebad25106af0751a57c9154eb888799e6dce8a47
                     flow_cnt <= flow_cnt + 1'b1;
                 end 
                 else
                     flow_cnt <= flow_cnt;
+<<<<<<< HEAD
 end 
+=======
+            end 
+>>>>>>> ebad25106af0751a57c9154eb888799e6dce8a47
             2'd1: begin               //写满时，写请求拉低，跳回上一个状态
                 if(wrfull) begin
                     wrreq <= 1'b0;
                     data  <= 8'd0;
                     flow_cnt <= 2'd0;
                 end
+<<<<<<< HEAD
 else begin            //没有写满的时候，写请求拉高，继续输入数据
+=======
+                else begin            //没有写满的时候，写请求拉高，继续输入数据
+>>>>>>> ebad25106af0751a57c9154eb888799e6dce8a47
                     wrreq <= 1'b1;
                     data  <= data + 1'd1;
                 end
